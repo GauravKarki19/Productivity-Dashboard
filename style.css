@@ -1,0 +1,323 @@
+:root{
+    --primary-color: #FCDEC0;
+    --secondary-color: #B4846C;
+    --tertiary-color: #E5B299;
+    --quaternary-color: #71524a;
+    --quineray-color: #9a735f;
+    --senary-color: red;
+    --septenary-color: #5b4135;
+}
+
+@font-face{
+    font-family: 'Ragille';
+    src: url(./fonts/Ragille-BF6a47f3a6a6daf.otf);
+}
+
+@font-face {
+    font-family: 'Aeonika';
+    src: url(./fonts/Aeonika-BF66fcc5a8cc5db.otf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ragille';
+    color: var(--primary-color);
+}
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+#main{
+    height: 100%;
+    width: 100%;
+    background-color: var(--quaternary-color);
+}
+
+h1{
+    font-family: 'Ragille';
+}
+
+.nav{
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    background-color: var(--secondary-color);
+}
+
+section.allElems{
+    height: 100%;
+    width: 100%;
+    padding: 40px;
+    padding-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 40px;
+    position: absolute;
+}
+
+.elem{
+    background-color: var(--tertiary-color);
+    /* padding: 30px 40px; */
+    overflow: hidden;
+    height: 280px;
+    width: 220px;
+    font-size: 20px;
+    border-radius: 10px;
+    position: relative;
+    transition: all ease 0.2s;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+}
+
+.elem img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.elem h2{
+    position: absolute;
+    font-size: 25px;
+    font-weight: 100;
+    bottom: 4%;
+    right: 5%;
+}
+
+.elem:active{
+    scale: 0.95;
+}
+
+.fullElem{
+    height: 100%;
+    width: 100%;
+    background-color: var(--quaternary-color);
+    padding: 40px;
+    font-size: 30px;
+    display: none;
+    position: absolute;
+}
+
+.back{
+    position: absolute;
+    right: 5%;
+    border-radius: 10px;
+    background-color: var(--senary-color);
+    font-size: 14px;
+    padding: 9px 10px;
+    border: none;
+    font-family: 'Aeonika';
+}
+
+.back:active{
+    scale:0.97
+}
+
+.todolist-fullpage h2{
+    font-size: 40px;
+}
+
+.todolist-fullpage .todo-container{
+    height: 80%;
+    width: 100%;
+    margin-top: 40px;
+    background-color: var(--quaternary-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.todolist-fullpage .todo-container .addTask{
+    width: 33%;
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    height: 100%;
+}
+
+.todolist-fullpage .todo-container .allTask{
+    width: 65%;
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    height: 100%;
+}
+
+.todolist-fullpage .todo-container .addTask form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+}
+
+.todo-container .addTask form input{
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 25px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.todo-container .addTask form textarea{
+    padding: 10px 20px;
+    width: 100%;
+    height: 250px;
+    font-size: 25px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.todo-container .addTask form button{
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 25px;
+    background-color: var(--quaternary-color);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin-bottom: 20px;
+    transition: all ease 0.3s;
+}
+
+.todo-container .addTask form button:active{
+    scale: 0.96;
+}
+
+.todolist-fullpage .todo-container .allTask{
+    width: 65%;
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    height: 100%;
+    padding: 20px 20px;
+    overflow-y: auto;
+}
+
+.task{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--primary-color);
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.task::-webkit-scrollbar{
+    display: none;
+}
+
+.task h5{
+    font-size: 30px;
+    color: #000;
+}
+
+.task button{
+    padding: 10px 12px;
+    color: var();
+    background-color: green;
+    border-radius: 5px;
+    font-size: 20px;
+    border: none;
+}
+
+.task button:active{
+    scale: 0.98 ;
+}
+
+.mark-imp{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: red;
+    width: 100%;
+}
+
+.dailyplanner-fullpage h2{
+    font-size: 40px;
+}
+
+.dailyplanner-fullpage .day-planner{
+    background-color: var(--secondary-color);
+    height: 85%;
+    margin-top: 40px;
+    width: 100%;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    overflow: auto;
+}
+
+.dailyplanner-fullpage .day-planner .day-planner-time{
+    display: flex;
+    align-items: center;   
+    position: relative;
+    width: 49%;
+    margin-bottom: 15px;
+}
+
+
+.day-planner .day-planner-time p{
+    position: absolute;
+    top: 10%;
+    left: 1%;
+    font-size: 18px;
+}
+
+.day-planner .day-planner-time input{
+    padding: 20px 40px;
+    width: 100%;
+    background-color: var(--quineray-color);
+    border-radius: 5px;
+    border: none;
+    padding-top: 32px;
+    font-size: 26px;
+    outline: none;
+    color: var(--septenary-color);
+}
+
+.motivation-fullpage{
+    display: block;
+}
+
+.motivation-fullpage .motivation-container{
+    height: 400px;
+    width: 400px;
+    background-color: var(--tertiary-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50px;
+}
+
+.motivation-fullpage .motivation-container::after{
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: red;
+    border-radius: 50px;
+    z-index: 8;
+}
+
+.motivation-fullpage .motivation-container .motivation-wrapper{
+    z-index: 10;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-color);
+}
