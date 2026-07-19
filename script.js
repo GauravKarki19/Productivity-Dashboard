@@ -102,3 +102,30 @@ function dailyPlanner() {
 
 }
 dailyPlanner();
+
+
+function motivationalQuote() {
+    var motivationQuote = document.querySelector('.motivation-2 h1');
+    var motivationAuthor = document.querySelector('.motivation-3 h2');
+
+
+    async function fetchQuote() {
+        const url = 'https://zenquotes.io/api/random?t=' + Date.now();
+
+        const res = await fetch(
+            'https://corsproxy.io/?' + encodeURIComponent(url),
+            {
+                cache: 'no-store'
+            }
+        );
+
+        const data = await res.json();
+
+        motivationQuote.textContent = data[0].q;
+        motivationAuthor.textContent = '- ' + data[0].a;
+    }
+
+    fetchQuote();
+}
+
+motivationalQuote();
