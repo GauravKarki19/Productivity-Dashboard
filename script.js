@@ -129,3 +129,78 @@ function motivationalQuote() {
 }
 
 motivationalQuote();
+
+
+let timer = document.querySelector('.pomo-timer h1');
+let startBtn = document.querySelector('.pomo-timer .start-timer');
+let pauseBtn = document.querySelector('.pomo-timer .pause-timer');
+let resetBtn = document.querySelector('.pomo-timer .reset-timer');
+let session = document.querySelector('.pomodorotimer-fullpage .session')
+let isWorkSession = true
+
+let timerInterval = null;
+let totalSeconds = 25 * 60;
+console.log(totalSeconds);
+
+
+function updateTimer() {
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = totalSeconds % 60;
+
+    timer.innerHTML = `${String(minutes).padStart('2', '0')}:${String(seconds).padStart('2', '0')}`
+}
+
+function startTimer() {
+    clearInterval(timerInterval)
+
+    if (isWorkSession) {
+        timerInterval = setInterval(function () {
+            if (totalSeconds > 0) {
+                totalSeconds--
+                updateTimer()
+            } else {
+                isWorkSession = false
+                clearInterval(timerInterval)
+                timer.innerHTML = '05:00'
+                session.innerHTML = 'Take a Break'
+                session.style.backgroundColor = 'var(--septenary-color)'
+                session.style.color = 'var(--primary-color)'
+                totalSeconds = 5 * 60
+            }
+        }, 1000)
+    } else {
+        timerInterval = setInterval(function () {
+            if (totalSeconds > 0) {
+                totalSeconds--
+                updateTimer()
+            } else {
+                isWorkSession = true
+                clearInterval(timerInterval)
+                timer.innerHTML = '25:00'
+                session.innerHTML = 'Work Session'
+                session.style.backgroundColor = 'var(--primary-color)'
+                session.style.color = 'var(--septenary-color)'
+                totalSeconds = 25 * 60
+            }
+        }, 1000)
+
+    }
+}
+
+function pauseTimer() {
+    clearInterval(timerInterval);
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    totalSeconds = 25 * 60;
+    session.innerHTML = 'Work Session'
+    session.style.backgroundColor = 'var(--primary-color)'
+    session.style.color = 'var(--septenary-color)'
+    updateTimer();
+}
+
+startBtn.addEventListener('click', startTimer);
+pauseBtn.addEventListener('click', pauseTimer);
+resetBtn.addEventListener('click', resetTimer);
+

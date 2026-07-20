@@ -391,3 +391,51 @@ section.allElems{
     top: 5%;
     height: 120px;
 }
+
+
+.pomodorotimer-fullpage{
+    position: absolute;
+}
+
+.pomodorotimer-fullpage h2{
+    font-size: 45px;
+}
+
+.pomodorotimer-fullpage .pomo-timer{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.pomo-timer h1{
+    font-size: 110px;
+}
+
+.pomo-timer button{
+    background-color: var(--quineray-color);
+    padding: 12px 36px;
+    font-size: 25px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.79);
+    transition: all ease 0.1s;
+    font-weight: 500;
+}
+
+.pomo-timer button:active{
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.767);
+}
+
+.pomodorotimer-fullpage .session{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: var(--primary-color);
+    padding: 20px 40px;
+    font-size: 30px;
+    border-radius: 5px;
+    color: var(--septenary-color);
+}
