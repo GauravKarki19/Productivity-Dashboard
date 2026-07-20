@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.5.15,
+* Autoprefixer: v10.5.0
+* Browsers: last 4 version
+*/
+
 :root{
     --primary-color: #FCDEC0;
     --secondary-color: #B4846C;
@@ -7,6 +14,7 @@
     --senary-color: red;
     --septenary-color: #5b4135;
     --octonary-color: #FEBA17;
+    --nononary-color: black;
 }
 
 @font-face{
@@ -22,18 +30,20 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     font-family: 'Ragille';
     color: var(--primary-color);
 }
 html,
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
 }
 
 #main{
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
     background-color: var(--quaternary-color);
 }
@@ -42,43 +52,122 @@ h1{
     font-family: 'Ragille';
 }
 
-.nav{
-    position: fixed;
+nav{
+    position: relative;
     width: 100%;
-    height: 60px;
-    background-color: var(--secondary-color);
+    background-color: var(--quaternary-color);
+    padding: 30px 20px;
 }
 
 section.allElems{
-    height: 100%;
+    min-height: calc(100vh - 120px);
     width: 100%;
     padding: 40px;
-    padding-top: 80px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 40px;
-    position: absolute;
+    padding-top: 40px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
+section.allElems::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+section.allElems::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.allElems header{
+    width: 100%;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    background-image: url('https://images.unsplash.com/photo-1532400413310-c9acf94ff938?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 40px;
+    margin-top: 50px;
+}
+
+header .header1 h1{
+    font-size: 80px;
+    font-weight: 100;
+    margin-bottom: 45px;
+}
+
+header .header1 h2{
+    font-size: 35px;
+    font-weight: 100;
+}
+
+header .header1 h4{
+    font-size: 50px;
+    font-weight: 900;
+}
+
+header .header2 h2{
+    font-weight: 700;
+    font-size: 40px;
+}
+
+header .header2 h4{
+    font-weight: 100;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+header .header2 h3{
+    font-weight: 100;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.allElems .allFeatures{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    gap: 50px;
+}
+
 
 .elem{
     background-color: var(--tertiary-color);
     /* padding: 30px 40px; */
     overflow: hidden;
-    height: 280px;
-    width: 220px;
+    height: 300px;
+    width: 337px;
     font-size: 20px;
     border-radius: 10px;
     position: relative;
+    -webkit-transition: all ease 0.2s;
     transition: all ease 0.2s;
     cursor: pointer;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
 }
 
 .elem img{
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 
 .elem h2{
@@ -100,7 +189,10 @@ section.allElems{
     padding: 40px;
     font-size: 30px;
     display: none;
-    position: absolute;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    overflow-y: auto;
 }
 
 .back{
@@ -127,9 +219,15 @@ section.allElems{
     width: 100%;
     margin-top: 40px;
     background-color: var(--quaternary-color);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .todolist-fullpage .todo-container .addTask{
@@ -147,9 +245,16 @@ section.allElems{
 }
 
 .todolist-fullpage .todo-container .addTask form{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     padding: 30px;
 }
 
@@ -162,7 +267,7 @@ section.allElems{
     border: none;
     outline: none;
     margin-bottom: 20px;
-    color: black;
+    color: var(--nononary-color);
 }
 
 .todo-container .addTask form textarea{
@@ -175,7 +280,7 @@ section.allElems{
     border: none;
     outline: none;
     margin-bottom: 20px;
-    color: black;
+    color: var(--nononary-color);
 }
 
 .todo-container .addTask form button{
@@ -187,6 +292,7 @@ section.allElems{
     border: none;
     outline: none;
     margin-bottom: 20px;
+    -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s;
 }
 
@@ -201,12 +307,25 @@ section.allElems{
     height: 100%;
     padding: 20px 20px;
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.todolist-fullpage .todo-container .allTask::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 .task{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     width: 100%;
     background-color: var(--primary-color);
     margin-bottom: 10px;
@@ -237,9 +356,15 @@ section.allElems{
 }
 
 .mark-imp{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
     background-color: red;
     width: 100%;
 }
@@ -255,16 +380,34 @@ section.allElems{
     width: 100%;
     border-radius: 10px;
     padding: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.dailyplanner-fullpage .day-planner::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 .dailyplanner-fullpage .day-planner .day-planner-time{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;   
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;   
     position: relative;
     width: 49%;
     margin-bottom: 15px;
@@ -292,14 +435,27 @@ section.allElems{
 
 .motivation-fullpage{
     overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.motivation-fullpage::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 .motivation-fullPage-container{
     height: 100%;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .motivation-fullpage .motivation-container{
@@ -319,7 +475,8 @@ section.allElems{
     background-color: var(--primary-color);
     border-radius: 50px;
     scale: 1.1;
-    filter: blur(100px);
+    -webkit-filter: blur(100px);
+            filter: blur(100px);
     z-index: 8;
 }
 
@@ -353,6 +510,8 @@ section.allElems{
     background-color: var(--septenary-color);
     padding: 30px;
     border-radius: 20px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
 }
 
@@ -369,9 +528,15 @@ section.allElems{
 }
 
 .motivation-3{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
     margin-top: -8px;
 }
 
@@ -381,6 +546,8 @@ section.allElems{
     text-align: right;
     padding: 20px 10px;
     border-radius: 20px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
 }
 
@@ -392,25 +559,43 @@ section.allElems{
     height: 120px;
 }
 
-
 .pomodorotimer-fullpage{
-    position: absolute;
+    overflow: hidden;
+    padding: 40px 20px 20px;
 }
 
 .pomodorotimer-fullpage h2{
     font-size: 45px;
+    margin-bottom: 16px;    
+}
+
+
+.pomodorotimer-fullpage .session{
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto 40px;
+
+    background: var(--primary-color);
+    color: var(--septenary-color);
+    padding: 20px 40px;
+    border-radius: 8px;
+    font-size: 30px;
 }
 
 .pomodorotimer-fullpage .pomo-timer{
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 0;
 }
 
 .pomo-timer h1{
     font-size: 110px;
+    margin: 0;
+    line-height: 1;
 }
 
 .pomo-timer button{
@@ -419,23 +604,62 @@ section.allElems{
     font-size: 25px;
     border-radius: 5px;
     border: none;
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.79);
+    -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.79);
+            box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.79);
+    -webkit-transition: all ease 0.1s;
     transition: all ease 0.1s;
     font-weight: 500;
+    margin: 10px 10px 0;
+    display: inline-block;
 }
 
 .pomo-timer button:active{
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.767);
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.767);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.767);
 }
 
-.pomodorotimer-fullpage .session{
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, 0);
+.theme{
     background-color: var(--primary-color);
-    padding: 20px 40px;
-    font-size: 30px;
-    border-radius: 5px;
-    color: var(--septenary-color);
+    border-radius: 10px;
+    padding: 12px 13px;
+    -webkit-transition: all ease 0.2s;
+    transition: all ease 0.2s;
+}
+
+.theme h4{
+    color: var(--secondary-color); 
+    font-weight: 700;
+    font-size: 25px;
+}
+
+nav{
+    height: 60px;
+    width: 100%;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 100;
+}
+
+.nav-in{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-color: var(--septenary-color);
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 20px 30px;
+    border-radius: 10px;
+}
+
+.nav-in h2{
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.theme:active{
+    scale: 0.96;
 }

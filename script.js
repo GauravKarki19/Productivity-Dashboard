@@ -131,76 +131,179 @@ function motivationalQuote() {
 motivationalQuote();
 
 
-let timer = document.querySelector('.pomo-timer h1');
-let startBtn = document.querySelector('.pomo-timer .start-timer');
-let pauseBtn = document.querySelector('.pomo-timer .pause-timer');
-let resetBtn = document.querySelector('.pomo-timer .reset-timer');
-let session = document.querySelector('.pomodorotimer-fullpage .session')
-let isWorkSession = true
+function pomodoroTimer() {
+    let timer = document.querySelector('.pomo-timer h1');
+    let startBtn = document.querySelector('.pomo-timer .start-timer');
+    let pauseBtn = document.querySelector('.pomo-timer .pause-timer');
+    let resetBtn = document.querySelector('.pomo-timer .reset-timer');
+    let session = document.querySelector('.pomodorotimer-fullpage .session')
+    let isWorkSession = true
 
-let timerInterval = null;
-let totalSeconds = 25 * 60;
-console.log(totalSeconds);
+    let timerInterval = null;
+    let totalSeconds = 25 * 60;
+    console.log(totalSeconds);
 
 
-function updateTimer() {
-    let minutes = Math.floor(totalSeconds / 60);
-    let seconds = totalSeconds % 60;
+    function updateTimer() {
+        let minutes = Math.floor(totalSeconds / 60);
+        let seconds = totalSeconds % 60;
 
-    timer.innerHTML = `${String(minutes).padStart('2', '0')}:${String(seconds).padStart('2', '0')}`
-}
-
-function startTimer() {
-    clearInterval(timerInterval)
-
-    if (isWorkSession) {
-        timerInterval = setInterval(function () {
-            if (totalSeconds > 0) {
-                totalSeconds--
-                updateTimer()
-            } else {
-                isWorkSession = false
-                clearInterval(timerInterval)
-                timer.innerHTML = '05:00'
-                session.innerHTML = 'Take a Break'
-                session.style.backgroundColor = 'var(--septenary-color)'
-                session.style.color = 'var(--primary-color)'
-                totalSeconds = 5 * 60
-            }
-        }, 1000)
-    } else {
-        timerInterval = setInterval(function () {
-            if (totalSeconds > 0) {
-                totalSeconds--
-                updateTimer()
-            } else {
-                isWorkSession = true
-                clearInterval(timerInterval)
-                timer.innerHTML = '25:00'
-                session.innerHTML = 'Work Session'
-                session.style.backgroundColor = 'var(--primary-color)'
-                session.style.color = 'var(--septenary-color)'
-                totalSeconds = 25 * 60
-            }
-        }, 1000)
-
+        timer.innerHTML = `${String(minutes).padStart('2', '0')}:${String(seconds).padStart('2', '0')}`
     }
+
+    function startTimer() {
+        clearInterval(timerInterval)
+
+        if (isWorkSession) {
+            timerInterval = setInterval(function () {
+                if (totalSeconds > 0) {
+                    totalSeconds--
+                    updateTimer()
+                } else {
+                    isWorkSession = false
+                    clearInterval(timerInterval)
+                    timer.innerHTML = '05:00'
+                    session.innerHTML = 'Take a Break'
+                    session.style.backgroundColor = 'var(--septenary-color)'
+                    session.style.color = 'var(--primary-color)'
+                    totalSeconds = 5 * 60
+                }
+            }, 1000)
+        } else {
+            timerInterval = setInterval(function () {
+                if (totalSeconds > 0) {
+                    totalSeconds--
+                    updateTimer()
+                } else {
+                    isWorkSession = true
+                    clearInterval(timerInterval)
+                    timer.innerHTML = '25:00'
+                    session.innerHTML = 'Work Session'
+                    session.style.backgroundColor = 'var(--primary-color)'
+                    session.style.color = 'var(--septenary-color)'
+                    totalSeconds = 25 * 60
+                }
+            }, 1000)
+
+        }
+    }
+
+    function pauseTimer() {
+        clearInterval(timerInterval);
+    }
+
+    function resetTimer() {
+        clearInterval(timerInterval);
+        totalSeconds = 25 * 60;
+        session.innerHTML = 'Work Session'
+        session.style.backgroundColor = 'var(--primary-color)'
+        session.style.color = 'var(--septenary-color)'
+        updateTimer();
+    }
+
+    startBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+
 }
 
-function pauseTimer() {
-    clearInterval(timerInterval);
+pomodoroTimer();
+
+
+function weatherFunctionality() {
+    var data = null;
+    var headerTime = document.querySelector('.header1 h1');
+    var headerDate = document.querySelector('.header1 h2');
+    var headerTemp = document.querySelector('.header2 h2');
+    var headerCondition = document.querySelector('.header2 h4');
+    var headerPrecipitation = document.querySelector('.header2 .precipitation');
+    var headerHumidity = document.querySelector('.header2 .humidity');
+    var headerWind = document.querySelector('.header2 .wind');
+
+    city = 'New Delhi';
+    api_key = 'ffefb023d2f5441681672625262007';
+    async function weatherAPICall() {
+        var res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${api_key}&q=${city}`);
+        var data = await res.json();
+        headerTemp.innerHTML = `${data.current.temp_c}°C`
+        headerCondition.innerHTML = `${data.current.condition.text}`
+        headerPrecipitation.innerHTML = `Precipitation: ${data.current.precip_in} %`;
+        headerHumidity.innerHTML = `Humidity: ${data.current.humidity}%`;;
+        headerWind.innerHTML = `Wind: ${data.current.wind_kph} km/hr`;
+    }
+    weatherAPICall()
+
+
+    function timeDate() {
+        const totaldaysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday'];
+        const totalMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemember', 'December'];
+        var date = new Date();
+        var dayOfWeek = totaldaysOfWeek[date.getDay()];
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var currDate = date.getDate();
+        var month = totalMonth[date.getMonth()];
+        var year = date.getFullYear();
+        headerTime.innerHTML = `${dayOfWeek}, ${String(hours).padStart('2', '0')}:${String(minutes).padStart('2', '0')}:${String(seconds).padStart('2', '0')} ${hours >= 12 ? 'PM' : 'AM'}`;
+        headerDate.innerHTML = `${currDate} ${month}, ${year}`;
+    }
+
+    setInterval(() => {
+        timeDate();
+    }, 1000);
 }
 
-function resetTimer() {
-    clearInterval(timerInterval);
-    totalSeconds = 25 * 60;
-    session.innerHTML = 'Work Session'
-    session.style.backgroundColor = 'var(--primary-color)'
-    session.style.color = 'var(--septenary-color)'
-    updateTimer();
-}
+weatherFunctionality();
 
-startBtn.addEventListener('click', startTimer);
-pauseBtn.addEventListener('click', pauseTimer);
-resetBtn.addEventListener('click', resetTimer);
+const themes = [
+    {
+        primary: "#F6E6DA",
+        secondary: "#A56F63",
+        tertiary: "#D99B7F",
+        quaternary: "#0F3040",
+        quinary: "#464858",
+        septenary: "#183A4C",
+        octonary: "#FFC857"
+    },
 
+    {
+        primary: "#EEE0CC",
+        secondary: "#BA6A4C",
+        tertiary: "#D49370",
+        quaternary: "#607456",
+        quinary: "#7D8F74",
+        septenary: "#41513A",
+        octonary: "#FFD166"
+    },
+
+    {
+        primary: "#F8FFF8",
+        secondary: "#6AECE1",
+        tertiary: "#FFF57E",
+        quaternary: "#26CCC2",
+        quinary: "#4DD7CE",
+        septenary: "#0E7871",
+        octonary: "#FFB76C"
+    }
+];
+
+const root = document.documentElement;
+const themeBtn = document.querySelector(".theme");
+
+let currentTheme = 0;
+
+themeBtn.addEventListener("click", () => {
+
+    const t = themes[currentTheme];
+
+    root.style.setProperty("--primary-color", t.primary);
+    root.style.setProperty("--secondary-color", t.secondary);
+    root.style.setProperty("--tertiary-color", t.tertiary);
+    root.style.setProperty("--quaternary-color", t.quaternary);
+    root.style.setProperty("--quineray-color", t.quinary);
+    root.style.setProperty("--septenary-color", t.septenary);
+    root.style.setProperty("--octonary-color", t.octonary);
+
+    currentTheme = (currentTheme + 1) % themes.length;
+});
