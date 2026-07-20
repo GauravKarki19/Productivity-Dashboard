@@ -221,7 +221,6 @@ function weatherFunctionality() {
     var headerWind = document.querySelector('.header2 .wind');
 
     city = 'New Delhi';
-    api_key = 'ffefb023d2f5441681672625262007';
     async function weatherAPICall() {
         var res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${api_key}&q=${city}`);
         var data = await res.json();
