@@ -220,9 +220,11 @@ function weatherFunctionality() {
     var headerHumidity = document.querySelector('.header2 .humidity');
     var headerWind = document.querySelector('.header2 .wind');
 
-    city = 'New Delhi';
+    var city = 'New Delhi';
+    var apiKey = window.PRODUCTIVE_DASHBOARD_API_KEY;
+
     async function weatherAPICall() {
-        var res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${api_key}&q=${city}`);
+        var res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
         var data = await res.json();
         headerTemp.innerHTML = `${data.current.temp_c}°C`
         headerCondition.innerHTML = `${data.current.condition.text}`
